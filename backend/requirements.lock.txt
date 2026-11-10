@@ -1,0 +1,10 @@
+# Tested combination (Python 3.13). Use if the ranges in requirements.txt ever break:
+#   pip install -r requirements.lock.txt
+fastapi==0.162.3
+uvicorn[standard]==0.54.0
+numpy==2.5.4
+PyYAML==6.0.3
+anthropic==2.7.0
+langfuse==5.2.0
+httpx==0.28.1
+pytest==9.2.0

@@ -1,0 +1,12 @@
+.env
+.env.local
+backend/.venv/
+backend/.cache/
+backend/evals/results.json
+__pycache__/
+.pytest_cache/
+web/node_modules/
+web/.next/
+web/next-env.d.ts
+*.tsbuildinfo
+.DS_Store

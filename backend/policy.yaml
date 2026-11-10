@@ -1,0 +1,34 @@
+# Floorwalker guardrails. The agent cannot change the live ad stack except through these rules.
+# The policy engine (app/policy.py) evaluates every proposed action against this file and
+# records each check on the incident timeline.
+
+version: 1
+
+# Kill switch: when true the agent may investigate and escalate, but never change config.
+kill_switch: false
+
+allowed_actions:
+  - rollback_config     # revert to a previously recorded config version
+  - set_floor           # nudge one waterfall network's floors in one geo
+  - disable_network     # stop calling one network in one geo
+  - escalate            # no change; hand to a human with the evidence
+
+floor:
+  max_step_pct: 15      # a floor may move at most +/-15% per change (rollbacks are exempt)
+
+rate_limit:
+  max_changes_per_sim_hour: 3
+
+rollback:
+  max_lookback_sim_min: 180   # only undo changes made in the last 3 sim-hours
+
+network_disable:
+  # Disabling a network that normally earns more than this share of the geo's revenue
+  # needs a human to click Approve.
+  approval_revenue_share: 0.30
+  approval_timeout_sim_min: 30
+
+canary:
+  fraction: 0.10              # every fix goes to 10% of traffic first
+  duration_sim_min: 15
+  min_rpr_ratio: 1.01         # promote only if canary revenue/request beats control by 1%
