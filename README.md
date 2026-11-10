@@ -78,7 +78,7 @@ You need Python 3.10 or newer, Node 20 or newer, and `make`. An Anthropic API ke
 ### 1. Install
 
 ```bash
-git clone <this repo's URL>
+git clone https://github.com/Yuvraj-Singh-Shehrawat/floorwalker.git
 cd floorwalker
 make setup
 ```
